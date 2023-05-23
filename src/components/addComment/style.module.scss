@@ -1,0 +1,62 @@
+.addCommentContainer {
+  display: none;
+}
+.formContentParent {
+  display: grid;
+  grid-template-areas: 'userImage commentTextarea sendBtn' 'userImage commentTextarea sendBtn';
+  grid-template-columns: auto 1fr auto;
+  gap: 0px 20px;
+}
+
+.userImage {
+  grid-area: userImage;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+}
+.commentTextarea {
+  grid-area: commentTextarea;
+  textarea {
+    width: 100%;
+    border: 2px solid var(--lightGray);
+    color: var(--darkBlue);
+    border-radius: 10px;
+    padding: 16px;
+    resize: none;
+    &:focus-visible {
+      border-color: var(--lightGray);
+      outline: 1px solid var(--darkBlue);
+    }
+  }
+}
+
+.sendBtn {
+  grid-area: sendBtn;
+  button {
+    background: var(--Moderateblue);
+    border: 0;
+    border-radius: 10px;
+    color: var(--white);
+    font-family: 'rubik700';
+    padding: 16px 30px;
+    text-transform: uppercase;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .formContentParent {
+    grid-template-areas: 'commentTextarea commentTextarea commentTextarea' 'userImage userImage sendBtn';
+    align-items: center;
+    gap: 10px 0px;
+  }
+  .commentTextarea {
+    textarea {
+      height: 8em;
+    }
+  }
+}

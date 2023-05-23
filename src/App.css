@@ -1,0 +1,63 @@
+:root {
+  --Moderateblue: #5457b6;
+  --SoftRed: #ed6468;
+  --lightGrayishBlue: #c3c4ef;
+  --paleRed: #ffb8bb;
+  --darkBlue: #324152;
+  --grayishBlue: #67727e;
+  --lightGray: #eaecf1;
+  --veryLightGray: #f5f6fa;
+  --white: #ffffff;
+  --paragraph: 16px;
+}
+
+@font-face {
+  font-family: 'rubik400';
+  src: url('./assets/fonts/Rubik-Regular.ttf');
+}
+@font-face {
+  font-family: 'rubik500';
+  src: url('./assets/fonts/Rubik-Medium.ttf');
+}
+@font-face {
+  font-family: 'rubik700';
+  src: url('./assets/fonts/Rubik-Bold.ttf');
+}
+* {
+  box-sizing: border-box;
+  font-size: var(--paragraph) !important;
+  transition: 0.2s all ease-in-out;
+}
+body {
+  font-family: 'rubik400';
+  background-color: var(--lightGray);
+}
+.commentsParentContainer {
+  width: 80%;
+  margin: 80px auto;
+}
+section {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+section:first-child {
+  margin-top: 0px;
+}
+
+@media (max-width: 425px) {
+  * {
+    font-size: 14px !important;
+  }
+  .commentsParentContainer {
+    width: 100%;
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 375px) {
+  * {
+    font-size: 12px !important;
+  }
+}

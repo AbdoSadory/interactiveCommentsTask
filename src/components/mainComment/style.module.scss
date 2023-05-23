@@ -1,0 +1,108 @@
+.commentParent {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-areas:
+    'commentCounter commentUserInfo commentUserInfo commentOperations'
+    'commentCounter commentContent commentContent commentContent'
+    'commentCounter commentContent commentContent commentContent';
+  align-items: center;
+  gap: 10px;
+}
+.commentCounter {
+  grid-area: commentCounter;
+  width: 50px;
+  text-align: center;
+  div {
+    width: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+    button,
+    p {
+      color: var(--Moderateblue);
+      width: 100%;
+      height: 40px;
+    }
+    button {
+      border: none;
+      background-color: var(--lightGray);
+      margin: 0;
+      padding: 0;
+      &:hover svg {
+        path {
+          fill: var(--Moderateblue);
+        }
+      }
+    }
+    p {
+      background-color: var(--lightGray);
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+.commentUserInfo {
+  grid-area: commentUserInfo;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+  h2 {
+    margin: 0 16px;
+    font-family: 'rubik700';
+  }
+  span {
+    font-family: 'rubik500';
+    color: var(--grayishBlue);
+  }
+}
+.commentContent {
+  grid-area: commentContent;
+  p {
+    margin-top: 16px;
+    color: var(--grayishBlue);
+  }
+}
+.commentOperations {
+  grid-area: commentOperations;
+  text-align: end;
+  button {
+    color: var(--Moderateblue);
+    border: none;
+    background-color: transparent;
+    img {
+      margin-right: 10px;
+    }
+    span {
+      font-family: 'rubik700';
+    }
+  }
+  &:hover button {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .commentParent {
+    grid-template-areas:
+      'commentUserInfo commentUserInfo commentUserInfo commentUserInfo  '
+      'commentContent commentContent commentContent commentContent'
+      'commentCounter commentCounter  commentOperations commentOperations';
+    align-items: center;
+    gap: 4px;
+  }
+  .commentCounter {
+    width: 70%;
+    div {
+      width: unset;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}
