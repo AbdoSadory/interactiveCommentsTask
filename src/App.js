@@ -98,7 +98,7 @@ function App() {
                   onClick={() => {
                     deleteCommentfromData(commentID)
                   }}
-                  className="btn btn-primary text-capitalize"
+                  className="btn btn-danger text-capitalize"
                   data-bs-dismiss="modal"
                 >
                   yes, delete
