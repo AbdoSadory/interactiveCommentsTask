@@ -1,17 +1,29 @@
 .commentParent {
-  margin: 0;
-  padding: 0;
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
   display: grid;
   grid-template-areas:
-    'commentCounter commentUserInfo commentUserInfo commentOperations'
-    'commentCounter commentContent commentContent commentContent'
-    'commentCounter commentContent commentContent commentContent';
+    'commentCounter commentUserInfo commentUserInfo commentUserInfo commentOperations'
+    'commentCounter commentContent commentContent commentContent commentContent'
+    'commentCounter commentContent commentContent commentContent commentContent';
   align-items: center;
   gap: 10px;
+  grid-template-columns: auto 1fr 1fr 1fr;
+
+  .commentParent {
+    padding: unset;
+  }
+  &:first-child {
+    margin-top: 0px;
+  }
 }
+
 .commentCounter {
   grid-area: commentCounter;
   width: 50px;
+  align-self: flex-start;
   text-align: center;
   div {
     width: 40px;
@@ -56,17 +68,43 @@
   h2 {
     margin: 0 16px;
     font-family: 'rubik700';
+    overflow: hidden;
   }
   span {
     font-family: 'rubik500';
     color: var(--grayishBlue);
+    overflow: hidden;
   }
 }
 .commentContent {
   grid-area: commentContent;
+  textarea {
+    width: 100%;
+    resize: none;
+    margin: 16px 0px;
+    border: none;
+    outline: none;
+    color: var(--grayishBlue);
+  }
   p {
     margin-top: 16px;
     color: var(--grayishBlue);
+  }
+  .updateBtnContainer {
+    display: none;
+    text-align: end;
+    button {
+      background: var(--Moderateblue);
+      border: 0;
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'rubik700';
+      padding: 16px 30px;
+      text-transform: uppercase;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
   }
 }
 .commentOperations {
@@ -82,12 +120,31 @@
     span {
       font-family: 'rubik700';
     }
+    &:hover {
+      opacity: 0.5;
+    }
   }
-  &:hover button {
-    opacity: 0.5;
+  .deleteBtn {
+    color: var(--SoftRed);
   }
 }
-
+.replyContainer {
+  margin-top: 20px;
+  margin-left: 40px;
+  padding-left: 40px;
+  border-left: 2px solid var(--middleGrayishBlue);
+}
+.replyContainer .replyContainer {
+  margin-left: unset;
+  padding-left: unset;
+  border-left: unset;
+}
+@media (max-width: 992px) {
+  .replyContainer {
+    margin-left: 0px;
+    padding-left: 16px;
+  }
+}
 @media (max-width: 768px) {
   .commentParent {
     grid-template-areas:
@@ -104,5 +161,14 @@
       display: flex;
       justify-content: flex-start;
     }
+  }
+  .commentUserInfo {
+    span {
+      font-size: 16px !important;
+    }
+  }
+  .replyContainer {
+    margin-left: 0px;
+    padding-left: 16px;
   }
 }

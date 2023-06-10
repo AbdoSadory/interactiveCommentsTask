@@ -1,10 +1,62 @@
 import React, { useEffect, useRef } from 'react'
 import styles from './style.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import moment from 'moment/moment'
+import { addComment, addReply } from '../../redux/store'
 
-const AddComment = ({ replyState }) => {
+const AddComment = ({
+  replyState,
+  changeReplyState,
+  defaultNameValue = '',
+  commentID = 0,
+}) => {
+  const dataInState = useSelector((state) => state.comments.initialState)
+  const dispatch = useDispatch()
   const addCommentRef = useRef()
+  const addNewComment = (e, commentID) => {
+    e.preventDefault()
+    let newCommentID = parseFloat(
+      (Math.random() * Math.random()).toPrecision(6)
+    )
+    switch (commentID) {
+      case 0:
+        let newComment = {
+          id: newCommentID,
+          content: e.target.elements[0].value,
+          createdAt: moment().format('llll'),
+          score: 0,
+          user: {
+            image: {
+              png: './images/avatars/image-juliusomo.png',
+              webp: './images/avatars/image-juliusomo.webp',
+            },
+            username: 'juliusomo',
+          },
+        }
+        dispatch(addComment(newComment))
+        break
+      default:
+        let newReply = {
+          id: newCommentID,
+          content: e.target.elements[0].value,
+          createdAt: moment().format('llll'),
+          score: 0,
+          replyingTo: defaultNameValue,
+          user: {
+            image: {
+              png: './images/avatars/image-juliusomo.png',
+              webp: './images/avatars/image-juliusomo.webp',
+            },
+            username: 'juliusomo',
+          },
+        }
+        dispatch(addReply({ newReply, commentID }))
+        changeReplyState()
+        break
+    }
+    e.target.reset()
+  }
   useEffect(() => {
-    console.log(replyState)
     replyState
       ? (addCommentRef.current.style.display = 'block')
       : (addCommentRef.current.style.display = 'none')
@@ -14,19 +66,31 @@ const AddComment = ({ replyState }) => {
       ref={addCommentRef}
       className={`${styles.addCommentContainer} mt-3`}
     >
-      <form>
+      <form
+        onSubmit={(e) => {
+          addNewComment(e, commentID)
+        }}
+      >
         <div className={`${styles.formContentParent}`}>
           <div className={`${styles.userImage}`}>
             <img
-              src="../../src/assets/images/avatars/image-amyrobson.png"
+              src={require('../../assets/' +
+                dataInState.currentUser.image.png.slice(2))}
               alt="current user"
             />
           </div>
           <div className={`${styles.commentTextarea}`}>
-            <textarea rows="5" defaultValue="@Ahmed,"></textarea>
+            <textarea
+              rows="5"
+              defaultValue={defaultNameValue && `@${defaultNameValue},`}
+              placeholder={'Add New Comment'}
+              required
+            ></textarea>
           </div>
           <div className={`${styles.sendBtn}`}>
-            <button type="submit">reply</button>
+            <button type="submit">
+              {defaultNameValue === '' ? 'send' : 'reply'}
+            </button>
           </div>
         </div>
       </form>

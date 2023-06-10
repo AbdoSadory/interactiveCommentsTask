@@ -1,5 +1,15 @@
 .addCommentContainer {
   display: none;
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  .addCommentContainer {
+    padding: unset;
+  }
+  &:first-child {
+    margin-top: 0px;
+  }
 }
 .formContentParent {
   display: grid;
