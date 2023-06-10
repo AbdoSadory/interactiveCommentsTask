@@ -11,7 +11,7 @@
 
  <img alt="website Screenshot" src="./1.jpg"  />
  <img alt="website Screenshot" src="./2.jpg"  />
- <img alt="website Screenshot" src="./3.jpg"  />
+ <img alt="website Screenshot" src="./3.JPG"  />
 
 ### Built with
 
