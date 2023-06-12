@@ -46,6 +46,7 @@ function App() {
 
   return (
     <main>
+      <h1 className="d-none">welcome to Interactive Comments</h1>
       <div className="container">
         <div className="commentsParentContainer">
           {dataInState && Object.keys(dataInState).length > 0 ? (
@@ -90,6 +91,7 @@ function App() {
                   type="button"
                   className="btn btn-secondary text-capitalize"
                   data-bs-dismiss="modal"
+                  aria-labelledby="toCancelTheDeletion"
                 >
                   no, cancel
                 </button>
@@ -100,6 +102,7 @@ function App() {
                   }}
                   className="btn btn-danger text-capitalize"
                   data-bs-dismiss="modal"
+                  aria-labelledby="toConfirmTheDeletion"
                 >
                   yes, delete
                 </button>

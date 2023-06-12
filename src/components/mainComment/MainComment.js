@@ -44,10 +44,12 @@ const MainComment = ({ commentDetails, getCommentIDToDelete }) => {
   return (
     <>
       <section>
+        <h2 className="d-none">{commentDetails.user.username}</h2>
         <div className={`${styles.commentParent}`}>
           <div className={`${styles.commentCounter}`}>
             <div>
               <button
+                aria-labelledby="toUpvote"
                 disabled={
                   commentDetails.user.username === 'juliusomo' ? true : false
                 }
@@ -75,6 +77,7 @@ const MainComment = ({ commentDetails, getCommentIDToDelete }) => {
               </button>
               <p>{commentDetails.score}</p>
               <button
+                aria-labelledby="toDownvote"
                 disabled={
                   commentDetails.user.username === 'juliusomo' ? true : false
                 }
@@ -135,9 +138,11 @@ const MainComment = ({ commentDetails, getCommentIDToDelete }) => {
                   )
                 }}
               >
+                <label for="comment" className="d-none"></label>
                 <textarea
                   ref={editCommentTextarea}
                   defaultValue={commentDetails.content}
+                  name="comment"
                   readOnly
                   required
                   cols="60"
@@ -146,7 +151,9 @@ const MainComment = ({ commentDetails, getCommentIDToDelete }) => {
                   ref={updateBtnContainer}
                   className={`${styles.updateBtnContainer}`}
                 >
-                  <button type="submit">update</button>
+                  <button type="submit" aria-labelledby="updateTheComment">
+                    update
+                  </button>
                 </div>
               </form>
             ) : (
@@ -163,8 +170,9 @@ const MainComment = ({ commentDetails, getCommentIDToDelete }) => {
                   onClick={() => {
                     getCommentIDToDelete(commentDetails.id)
                   }}
+                  aria-labelledby="toDelete"
                 >
-                  <img src={deleteImg} alt="delete" />
+                  <img src={deleteImg} alt="delete SVG img" />
                   <span className="text-capitalize">delete</span>
                 </button>
                 <button
@@ -172,14 +180,15 @@ const MainComment = ({ commentDetails, getCommentIDToDelete }) => {
                     changeEditState(e)
                   }}
                   ref={editCommentbutton}
+                  aria-labelledby="toEdit"
                 >
-                  <img src={editImg} alt="edit" />
+                  <img src={editImg} alt="edit SVG img" />
                   <span className="text-capitalize">edit</span>
                 </button>
               </>
             ) : (
-              <button onClick={displayAddCommentForm}>
-                <img src={replyImg} alt="reply" />
+              <button onClick={displayAddCommentForm} aria-labelledby="toReply">
+                <img src={replyImg} alt="reply SVG img" />
                 <span className="text-capitalize">reply</span>
               </button>
             )}

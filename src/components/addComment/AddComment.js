@@ -66,6 +66,7 @@ const AddComment = ({
       ref={addCommentRef}
       className={`${styles.addCommentContainer} mt-3`}
     >
+      <h2 className="d-none">{defaultNameValue}</h2>
       <form
         onSubmit={(e) => {
           addNewComment(e, commentID)
@@ -88,7 +89,7 @@ const AddComment = ({
             ></textarea>
           </div>
           <div className={`${styles.sendBtn}`}>
-            <button type="submit">
+            <button type="submit" aria-labelledby="submitTheComment">
               {defaultNameValue === '' ? 'send' : 'reply'}
             </button>
           </div>
